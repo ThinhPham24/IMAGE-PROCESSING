@@ -110,7 +110,7 @@ def resized_img(img,percent):
     return resized
 def find_rbbox(img,mask, angle):
     ret, thresh = cv2.threshold(mask, 127, 255,0)
-    _,contours,hierarchy = cv2.findContours(thresh,2,1)
+    contours,hierarchy = cv2.findContours(thresh,2,1)
     # cnt = contours[0]
     cnt = max(contours, key = cv2.contourArea)
     # cv2.drawContours(img,cnt,-1,(0,255,0),10)

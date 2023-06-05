@@ -55,8 +55,10 @@ if __name__ == "__main__":
             # print("class_name", cls_name)
             mask = np.array(mask)
             mask_temp = (mask*255).astype('uint8')
-            im = Image.fromarray(mask_temp)
-            imrgb = Image.merge('RGB', (im,im,im))
+            # im = Image.fromarray(mask_temp)
+            # imrgb = Image.merge('RGB', (im,im,im))
+            kernel = np.ones((3, 3), np.uint8)
+            cls = cv2.morphologyEx(mask_temp, cv2.MORPH_CLOSE, kernel, iterations=1)        
             if cls_name == name_temp:
                 i +=1
                 name_temp = cls_name
@@ -64,12 +66,19 @@ if __name__ == "__main__":
                 i =0
                 name_temp = cls_name
             # print("I",i)
-            if cls_name == "bud" or cls_name == "dark":
-                filename = os.path.join(annotations_savepath, '{}_{}_{}_0.png'.format(base,cls_name,i))
-                imrgb.save(filename)
+            # if cls_name == "bud" or cls_name == "dark":
+            #     filename = os.path.join(annotations_savepath, '{}_{}_{}_0.png'.format(base,cls_name,i))
+            #     imrgb.save(filename)
             # cv2.imshow("mask", mask_temp)
             # k = cv2.waitKey(0)
             # if  k == ord("b"):
             #     break
+            if cls_name == "core" or cls_name == "bud" or cls_name == "leaf" or cls_name == "single":
+                filename = os.path.join(annotations_savepath, '{}_{}_{}_0.png'.format(base,cls_name,i))
+                # print("file name", filename)
+                # cv2.imshow("image", cls)
+                # cv2.waitKey(0)
+                # imrgb.save(filename)
+                cv2.imwrite(f"{filename}", cls)
 
         

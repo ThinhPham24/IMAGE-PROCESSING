@@ -155,7 +155,7 @@ def display_mask(image_color,image_mask):
     # mask_merge = []
     overlay = image_color.copy()
     image_only_contour = overlay.copy()
-    for mask in instant_masks:
+    for i, mask in enumerate(instant_masks):
     # gray = cv2.cvtColor(image_mask, cv2.COLOR_BGR2GRAY)
         ret, thresh = cv2.threshold(mask,127,255,cv2.THRESH_BINARY)
         cnts, hierarchy = cv2.findContours(thresh, cv2.RETR_EXTERNAL,cv2.CHAIN_APPROX_SIMPLE)
@@ -163,8 +163,8 @@ def display_mask(image_color,image_mask):
         # img_with_overlay = cv2.normalize(np.int64(image_color) * image_backgorund, None, 0, 255, cv2.NORM_MINMAX, cv2.CV_8U)
         cv2.drawContours(image_only_contour, cnts, -1, (0, 0, 255), 1) 
         for i_x,cnt in enumerate(cnts):
-            cv2.fillPoly(overlay, [cnt] ,color_radom(i_x))
-            cv2.addWeighted(overlay, 0.9, image_color,1 -0.9,0,image_color)
+            cv2.fillPoly(overlay, [cnt] ,color_radom(i+100))
+            cv2.addWeighted(overlay, 0.5, image_color,1-0.5,0,image_color)
     # print("angle", angles_all[i])
     # find_rbbox(image_color,gray,angles_all[i]*20)
     # cv2.drawContours(image_color, cnts, -1, (0, 0, 0), 1) 
@@ -177,9 +177,9 @@ if __name__ =="__main__":
     python check_only_json.py
     '''
     parser = argparse.ArgumentParser(description='Process some integers.')
-    parser.add_argument('--path_img', default= "C:\\Users\\ptthi\\OneDrive\\Desktop\\Image_processing\\THINH_2\\IMG\\test", type=str, required=False,
+    parser.add_argument('--path_img', default= "C:\\Users\\ptthi\\OneDrive\\Desktop\\Image_processing\\THINH_2\\IMG\\validate_rot", type=str, required=False,
                         help= 'direction of image folder') #path to the folder that contain image
-    parser.add_argument('--path_json', default= "C:\\Users\\ptthi\\OneDrive\\Desktop\\Image_processing\\THINH_2\\annotations\\test.json", type=str, required=False,
+    parser.add_argument('--path_json', default= "C:\\Users\\ptthi\\OneDrive\\Desktop\\Image_processing\\THINH_2\\annotations\\validate.json", type=str, required=False,
                         help= 'path of json') #annotation path
     
     args = parser.parse_args()

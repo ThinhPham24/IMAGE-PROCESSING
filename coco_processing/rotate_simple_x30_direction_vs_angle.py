@@ -1,6 +1,6 @@
 # Step Oder, Rotate, Blur, Flip. 
 # USAGE
-# step 1: python3 rotate_simple_x30_direction_vs_angle.py 
+# step 1: python rotate_simple_x30_direction_vs_angle.py 
 # step 2: python flip.py
 # step 3: python augmentation.py
 # import the necessary packages
@@ -16,12 +16,12 @@ import glob
 offset = 1000
 
 # No. of new image from one original image
-k = 4; # So luong anh muon tao ra tu anh goc
-#k = 3; # So luong anh muon tao ra tu anh goc
-# k = 30
+# k = 4; # So luong anh muon tao ra tu anh goc
+# k = 3; # So luong anh muon tao ra tu anh goc
+k = 30
 
 # Input folder
-folder = "/DATA/"
+folder = "/THINH_2/"
 #*********************** parameters *****************************#
 
 rename_list = []
@@ -33,20 +33,20 @@ path = ''.join([current_dir, folder])
 print("path = ", path)
 
 #type 0:train, 1:test
-type = 1
+type = 0
 
 if type ==0:    #train folder
     #-----------------------------------------------------------------------#
-    images_dir = "train/IMG"
-    annotations_dir = "train/ANNOTATION"
+    images_dir = "IMG/train"
+    annotations_dir = "ANNOTATION/train"
     images_path = os.path.join(path, images_dir)
-    annotations_savepath = os.path.join(path, annotations_dir)
-    if not os.path.isdir(os.path.abspath(annotations_savepath)):
-        os.mkdir(annotations_savepath)
+    annotations_path = os.path.join(path, annotations_dir)
+    # if not os.path.isdir(os.path.abspath(annotations_path)):
+    #     os.mkdir(annotations_path)
     #-----------------------------------------------------------------------#
     #-----------------------------------------------------------------------#
-    new_image_save = "train/img_new_rot"
-    new_annotations_save = "train/an_new_rot"
+    new_image_save = "IMG/train/img_new_rot"
+    new_annotations_save = "ANNOTATION/train/an_new_rot"
     images_new_savepath = os.path.join(path, new_image_save)
     annotations_new_savepath = os.path.join(path, new_annotations_save)
     if not os.path.isdir(os.path.abspath(images_new_savepath)):
@@ -54,24 +54,24 @@ if type ==0:    #train folder
     if not os.path.isdir(os.path.abspath(annotations_new_savepath)):
         os.mkdir(annotations_new_savepath)
     #-----------------------------------------------------------------------#
-    images_path = os.path.join(path, images_dir)
-    annotations_savepath = os.path.join(path, annotations_dir)
-    print("images_path = ", images_path)
-    if not os.path.isdir(os.path.abspath(annotations_savepath)):
-        os.mkdir(annotations_savepath)
+    # images_path = os.path.join(path, images_dir)
+    # annotations_savepath = os.path.join(path, annotations_dir)
+    # print("images_path = ", images_path)
+    # if not os.path.isdir(os.path.abspath(annotations_savepath)):
+    #     os.mkdir(annotations_savepath)
 
 if type==1:     #test folder
     #-----------------------------------------------------------------------#
-    images_dir = "test/IMG"
-    annotations_dir = "test/ANNOTATION"
+    images_dir = "IMG/validate"
+    annotations_dir = "ANNOTATION/validate"
     images_path = os.path.join(path, images_dir)
-    annotations_savepath = os.path.join(path, annotations_dir)
-    if not os.path.isdir(os.path.abspath(annotations_savepath)):
-        os.mkdir(annotations_savepath)
+    annotations_path = os.path.join(path, annotations_dir)
+    # if not os.path.isdir(os.path.abspath(annotations_savepath)):
+    #     os.mkdir(annotations_savepath)
     #-----------------------------------------------------------------------#
     #-----------------------------------------------------------------------#
-    new_image_save = "test/img_new_rot"
-    new_annotations_save = "test/an_new_rot"
+    new_image_save = "IMG/validate/img_new_rot"
+    new_annotations_save = "ANNOTATION/validate/an_new_rot"
     images_new_savepath = os.path.join(path, new_image_save)
     annotations_new_savepath = os.path.join(path, new_annotations_save)
     if not os.path.isdir(os.path.abspath(images_new_savepath)):
@@ -79,11 +79,11 @@ if type==1:     #test folder
     if not os.path.isdir(os.path.abspath(annotations_new_savepath)):
         os.mkdir(annotations_new_savepath)
     #-----------------------------------------------------------------------#
-    images_path = os.path.join(path, images_dir)
-    annotations_savepath = os.path.join(path, annotations_dir)
-    print("images_path = ", images_path)
-    if not os.path.isdir(os.path.abspath(annotations_savepath)):
-        os.mkdir(annotations_savepath)
+    # images_path = os.path.join(path, images_dir)
+    # annotations_savepath = os.path.join(path, annotations_dir)
+    # print("images_path = ", images_path)
+    # if not os.path.isdir(os.path.abspath(annotations_savepath)):
+    #     os.mkdir(annotations_savepath)
 
 
 
@@ -93,7 +93,7 @@ def magic(numList):
     return int(s)
 
    
-filenames = glob.glob(images_path + "/*.*") #read all files in the path mentioned
+filenames = glob.glob(images_path + "/*.jpg") #read all files in the path mentioned
 for n, image_file in enumerate(filenames):
     file, ext = os.path.splitext(image_file)  # split filename and extension
     name = os.path.basename(file)
@@ -134,7 +134,7 @@ for n, image_file in enumerate(filenames):
         cv2.imwrite(filename,rotated)
         #cv2.waitKey(1000)
 
-filenames = glob.glob(annotations_savepath + "/*.*") #read all files in the path mentioned
+filenames = glob.glob(annotations_path + "/*.png") #read all files in the path mentioned
 for n, image_file in enumerate(filenames):
     check = 0
     angle_list = []
@@ -193,7 +193,8 @@ for n, image_file in enumerate(filenames):
         rotated = imutils.rotate(image, angle)
         #----------- New angle calculation ------------------#
         new_angle = angle + angle_ori
-        if (new_angle > 360):
+        #------------Change here-----------------------------#
+        while (new_angle > 360):
             new_angle = new_angle - 360 
         #----- End of New angle calculation -----------------#
         filename = os.path.join(annotations_new_savepath, '{}{}{}.png'.format(new_value+i,remained_name,new_angle))
