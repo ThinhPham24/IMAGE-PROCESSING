@@ -171,11 +171,11 @@ if __name__ =="__main__":
     python check_only_annotation.py
     '''
     parser = argparse.ArgumentParser(description='Process some integers.')
-    parser.add_argument('--path_img', default= "C:\\Users\\ptthi\\OneDrive\\Desktop\\Image_processing\\THINH_2\\IMG\\validate_rot", type=str, required=False,
+    parser.add_argument('--path_img', default= "C:\\Users\\ptthi\\OneDrive\\Desktop\\Image_processing\\new_data\\train\\IMG", type=str, required=False,
                         help= 'direction of image folder') #path to the folder that contain image
 
 
-    parser.add_argument('--path_an', default= "C:\\Users\\ptthi\\OneDrive\\Desktop\\Image_processing\\THINH_2\\ANNOTATION\\validate_rot", type=str, required=False,
+    parser.add_argument('--path_an', default= "C:\\Users\\ptthi\\OneDrive\\Desktop\\Image_processing\\new_data\\train\\ANNOTATION", type=str, required=False,
                         help= 'direction of annotation folder') #annotation path
     args = parser.parse_args()
     print("this is path", args.path_img)

@@ -14,7 +14,7 @@ import numpy as np
 from pycococreatortools import pycococreatortools
 import cv2
 # - Saving the json format after convert image to COCO format dataset
-folder = "/THINH_2/"
+folder = "/THINH_7/"
 annotations_dir = "annotations"
 current_dir = os.getcwd()
 path = ''.join([current_dir, folder])
@@ -26,19 +26,19 @@ if not os.path.isdir(os.path.abspath(annotations_savepath)):
 #---- End of saving Json format --------------------------------------#
 
 
-ROOT_DIR = 'THINH_2'
+ROOT_DIR = 'THINH_7'
 
 IMG_DIR = '/IMG'
 ANNOTATION_DIR = '/ANNOTATION'
 
-TRAIN_IMAGE_DIR = ROOT_DIR + IMG_DIR + "/train_rot"
-TRAIN_ANNOTATION_DIR = ROOT_DIR +  ANNOTATION_DIR + "/train_rot"
+TRAIN_IMAGE_DIR = ROOT_DIR + IMG_DIR + "/train"
+TRAIN_ANNOTATION_DIR = ROOT_DIR +  ANNOTATION_DIR + "/train"
 
-VALIDATE_IMAGE_DIR = ROOT_DIR + IMG_DIR + "/validate_rot"
-VALIDATE_ANNOTATION_DIR = ROOT_DIR +  ANNOTATION_DIR + "/validate_rot"
+VALIDATE_IMAGE_DIR = ROOT_DIR + IMG_DIR + "/validate"
+VALIDATE_ANNOTATION_DIR = ROOT_DIR +  ANNOTATION_DIR + "/validate"
 
-TEST_IMAGE_DIR = ROOT_DIR + IMG_DIR + "/validate_rot"
-TEST_ANNOTATION_DIR = ROOT_DIR +  ANNOTATION_DIR + "/validate_rot"
+TEST_IMAGE_DIR = ROOT_DIR + IMG_DIR + "/scale_validate"
+TEST_ANNOTATION_DIR = ROOT_DIR +  ANNOTATION_DIR + "/scale_validate"
 
 
 
@@ -62,7 +62,7 @@ LICENSES = [
 CATEGORIES = [
     {
         'id': 1,
-        'name': 'bud',
+        'name': 'Bud',
     },
 ]
 
@@ -122,7 +122,7 @@ def main():
                 for annotation_filename in annotation_files:
                     
                     print(annotation_filename)
-                    if '_bud_' in annotation_filename:
+                    if '_Bud_' in annotation_filename:
                         class_id = 1
                     else:
                         continue
@@ -177,7 +177,7 @@ def main():
                 for annotation_filename in annotation_files:
                     
                     #print(annotation_filename)
-                    if '_bud_' in annotation_filename:
+                    if '_Bud_' in annotation_filename:
                         class_id = 1
                     else:
                         continue
@@ -231,7 +231,7 @@ def main():
                 for annotation_filename in annotation_files:
                     
                     #print(annotation_filename)
-                    if '_bud_' in annotation_filename:
+                    if '_Bud_' in annotation_filename:
                         class_id = 1
                     else:
                         continue

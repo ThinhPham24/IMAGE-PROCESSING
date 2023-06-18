@@ -21,7 +21,7 @@ offset = 1000
 k = 30
 
 # Input folder
-folder = "/THINH_2/"
+folder = "/FIX_THINH/"
 #*********************** parameters *****************************#
 
 rename_list = []
@@ -37,16 +37,16 @@ type = 0
 
 if type ==0:    #train folder
     #-----------------------------------------------------------------------#
-    images_dir = "IMG/train"
-    annotations_dir = "ANNOTATION/train"
+    images_dir = "IMG/scale_train"
+    annotations_dir = "ANNOTATION/scale_train"
     images_path = os.path.join(path, images_dir)
     annotations_path = os.path.join(path, annotations_dir)
     # if not os.path.isdir(os.path.abspath(annotations_path)):
     #     os.mkdir(annotations_path)
     #-----------------------------------------------------------------------#
     #-----------------------------------------------------------------------#
-    new_image_save = "IMG/train/img_new_rot"
-    new_annotations_save = "ANNOTATION/train/an_new_rot"
+    new_image_save = "IMG/img_new_rot"
+    new_annotations_save = "ANNOTATION/an_new_rot"
     images_new_savepath = os.path.join(path, new_image_save)
     annotations_new_savepath = os.path.join(path, new_annotations_save)
     if not os.path.isdir(os.path.abspath(images_new_savepath)):

@@ -32,11 +32,12 @@ if __name__ == "__main__":
         masks = {} 
         for shape in label_file.shapes:
             points = shape["points"]
+            i = len(points)
             label = shape["label"]
             group_id = shape.get("group_id")
             shape_type = shape.get("shape_type", "polygon")
             mask = labelme.utils.shape_to_mask(
-                img.shape[:2], points, shape_type
+                img.shape[:2], points[1:i], shape_type
             )
 
             if group_id is None:

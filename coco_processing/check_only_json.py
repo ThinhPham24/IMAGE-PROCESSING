@@ -177,9 +177,9 @@ if __name__ =="__main__":
     python check_only_json.py
     '''
     parser = argparse.ArgumentParser(description='Process some integers.')
-    parser.add_argument('--path_img', default= "C:\\Users\\ptthi\\OneDrive\\Desktop\\Image_processing\\THINH_2\\IMG\\validate_rot", type=str, required=False,
+    parser.add_argument('--path_img', default= "C:\\Users\\ptthi\\OneDrive\\Desktop\\Image_processing\\THINH_4\\IMG\\validate", type=str, required=False,
                         help= 'direction of image folder') #path to the folder that contain image
-    parser.add_argument('--path_json', default= "C:\\Users\\ptthi\\OneDrive\\Desktop\\Image_processing\\THINH_2\\annotations\\validate.json", type=str, required=False,
+    parser.add_argument('--path_json', default= "C:\\Users\\ptthi\\OneDrive\\Desktop\\Image_processing\\THINH_4\\annotations\\validate.json", type=str, required=False,
                         help= 'path of json') #annotation path
     
     args = parser.parse_args()
